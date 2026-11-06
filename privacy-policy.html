@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy – Light Mix</title>
+<meta name="description" content="Privacy policy of the Light Mix app.">
+<link rel="icon" href="icons/app-icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ko" href="privacy-policy-ko.html">
+<link rel="alternate" hreflang="en" href="privacy-policy.html">
+<link rel="alternate" hreflang="x-default" href="privacy-policy.html">
+<link rel="stylesheet" href="css/style.css">
+<script>
+// Visitors whose browser language is Korean are sent to the Korean page on their first visit.
+// Clicking a language link turns the redirect off.
+(function () {
+  try {
+    if (sessionStorage.getItem('lm-lang-chosen')) return;
+    var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    if (lang.indexOf('ko') === 0) location.replace('privacy-policy-ko.html');
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="brand"><img src="icons/app-icon.svg" alt="">Light Mix</span>
+    <nav class="links" aria-label="Menu">
+      <a href="privacy-policy.html" aria-current="page">Privacy Policy</a>
+      <a href="privacy-policy-ko.html" hreflang="ko" lang="ko" onclick="try{sessionStorage.setItem('lm-lang-chosen','1')}catch(e){}">한국어</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap doc">
+  <h1>Privacy Policy</h1>
+  <p class="meta">App: Light Mix · Developer: J.Biglion · Effective date: November 6, 2026</p>
+
+  <p>J.Biglion (the “Developer”) respects the privacy of everyone who uses Light Mix (the “App”). This policy explains what information the App handles.</p>
+
+  <h2>1. At a glance</h2>
+  <ul>
+    <li>The App does not ask you to sign up or sign in.</li>
+    <li>The App does not collect personally identifiable information such as your name, email address, phone number, location, contacts or photos.</li>
+    <li>The App does not request internet access and does not send information to any server of the Developer.</li>
+    <li>This version of the App contains no advertising and no in-app purchases.</li>
+  </ul>
+
+  <h2>2. Information stored on your device</h2>
+  <p>To let you continue your game, the following information is stored only on your device. The Developer cannot receive or view it.</p>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Information</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Level completion records, current device placement and inventory</td><td>Resuming play</td></tr>
+        <tr><td>Hint balance and per-level hint grant records</td><td>Providing hints</td></tr>
+        <tr><td>Settings (large text, sound effects, vibration, reduced light effects)</td><td>Keeping your preferences</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3. Information we do not collect</h2>
+  <p>The App does not collect or use account information, advertising identifiers, device identifiers, location, contacts, photos or media files, microphone or camera input, or payment information. It also contains no analytics or crash-reporting tools.</p>
+
+  <h2>4. Sharing with third parties</h2>
+  <p>Because the Developer does not collect personal information, the Developer does not share it with, or hand its processing to, any third party.</p>
+
+  <h2>5. Device backup</h2>
+  <p>If Android automatic backup is turned on, the operating system may back up the App’s stored data (game progress and settings) to your Google account. This backup takes place between you and Google, and the Developer cannot access it. You can turn backup off in your device’s Android settings.</p>
+
+  <h2>6. Retention and deletion</h2>
+  <p>The stored information is deleted when you uninstall the App or clear the App’s data in your device settings. The Developer keeps no information separately.</p>
+
+  <h2>7. Children</h2>
+  <p>The App does not collect personal information from anyone, regardless of age.</p>
+
+  <h2>8. When features such as advertising are added</h2>
+  <p>If a new feature such as advertising changes the information the App handles, this policy will be updated and its effective date changed before that version is released. If advertising is introduced, this page will describe the information used by the ad service (for example, the advertising ID) and the choices available to you.</p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>If this policy changes, the new text and effective date will be posted on this page.</p>
+
+  <h2>10. Contact</h2>
+  <p>Please send privacy-related questions to:</p>
+  <ul>
+    <li>Developer: J.Biglion</li>
+    <li>Email: <a href="mailto:jbiglion22@gmail.com">jbiglion22@gmail.com</a></li>
+  </ul>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 J.Biglion</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>빛의조합 (Light Mix) – 거울로 빛을 섞는 RGB 퍼즐</title>
+<meta name="description" content="거울로 빛의 길을 만들고 빨강·초록·파랑을 섞어 정확한 색을 맞추는 RGB 빛 퍼즐 게임. 100개 레벨, 시간제한 없음, 오프라인 플레이.">
+<link rel="icon" href="icons/app-icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ko" href="index-ko.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index-ko.html"><img src="icons/app-icon.svg" alt="">빛의조합</a>
+    <nav class="links" aria-label="메뉴">
+      <a href="#play">직접 해보기</a>
+      <a href="#chapters">챕터</a>
+      <a href="index.html" hreflang="en" lang="en" onclick="try{sessionStorage.setItem('lm-lang-chosen','1')}catch(e){}">English</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- 첫 화면 -->
+  <section class="stage" id="play">
+    <div class="wrap">
+      <div>
+        <div class="badge-row">
+          <span class="badge hot">Android · 출시 준비 중</span>
+          <span class="badge">100 레벨</span>
+          <span class="badge">시간제한 없음</span>
+        </div>
+        <h1>빛을 <span class="glow-r">섞고</span> <span class="glow-g">이어서</span><br><span class="glow-b">색</span>을 완성하세요</h1>
+        <p class="lead">거울로 빛의 길을 만들고, 빨강·초록·파랑을 섞어 수신기에 목표 색을 정확히 보내는 퍼즐 게임 <b>빛의조합</b>. 체험 퍼즐을 지금 바로 풀어 보세요.</p>
+        <a class="btn" href="#how">어떤 게임일까요?</a>
+        <a class="btn ghost" href="#chapters">100개 레벨 보기</a>
+      </div>
+
+      <div class="demo" id="demo">
+        <div class="demo-top">
+          <strong>체험 퍼즐</strong>
+          <span class="target-chip">목표 <i></i> 노랑</span>
+        </div>
+        <svg id="demo-board" xmlns="http://www.w3.org/2000/svg" aria-hidden="false"></svg>
+        <p class="demo-status" id="demo-status" role="status" aria-live="polite"></p>
+        <div class="demo-actions">
+          <button type="button" id="demo-hint">힌트</button>
+          <button type="button" id="demo-reset">처음부터</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- 색 혼합 -->
+    <section class="band">
+      <p class="eyebrow">Mix</p>
+      <h2>빛은 섞일수록 밝아져요</h2>
+      <p class="sub">물감과 달리 빛은 더할수록 환해집니다. 세 가지 빛만 있으면 일곱 가지 색을 만들 수 있어요.</p>
+      <div class="mixgrid">
+        <div class="venn" role="img" aria-label="빨강, 초록, 파랑 원이 겹쳐 노랑, 시안, 마젠타, 흰색이 만들어지는 그림">
+          <span class="r"></span><span class="g"></span><span class="b"></span>
+        </div>
+        <div>
+          <div class="recipes">
+            <div class="recipe"><i style="background:#ffd66b"></i><div>빨강 + 초록<small>노랑</small></div></div>
+            <div class="recipe"><i style="background:#62dcf2"></i><div>초록 + 파랑<small>시안</small></div></div>
+            <div class="recipe"><i style="background:#e58cff"></i><div>빨강 + 파랑<small>마젠타</small></div></div>
+            <div class="recipe"><i style="background:#fff"></i><div>빨강 + 초록 + 파랑<small>흰색</small></div></div>
+          </div>
+          <p class="note-card"><strong>정확해야 켜져요.</strong> 목표가 노랑인데 흰색이 들어오면 오답입니다. 필요한 빛은 모으고, 넘치는 빛은 다른 길로 돌려보내세요.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 방법 -->
+    <section class="band" id="how">
+      <p class="eyebrow">How to play</p>
+      <h2>세 번이면 이해돼요</h2>
+      <p class="sub">규칙은 단순하지만, 레벨이 올라갈수록 생각할 거리가 늘어납니다.</p>
+      <div class="steps">
+        <div class="step"><h3>거울 놓기</h3><p>보관함의 거울을 끌어 놓거나, 선택한 뒤 빈 칸을 눌러 배치하세요.</p></div>
+        <div class="step"><h3>방향 돌리기</h3><p>거울을 누르면 / 와 \ 방향이 바뀌고, 빛의 길이 바로 달라집니다.</p></div>
+        <div class="step"><h3>수신기 켜기</h3><p>모든 수신기가 목표 색과 정확히 같아지면 성공! 틀려도 언제든 되돌릴 수 있어요.</p></div>
+      </div>
+    </section>
+
+    <!-- 도구 -->
+    <section class="band">
+      <p class="eyebrow">Tools</p>
+      <h2>새로운 도구가 계속 등장해요</h2>
+      <p class="sub">거울 하나로 시작해서 합광기와 필터까지, 챕터마다 새 아이디어를 만납니다.</p>
+      <div class="tools">
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="빨간 빛이 거울에서 아래로 꺾이는 그림">
+            <line x1="10" y1="43" x2="120" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="120" y1="43" x2="120" y2="82" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="102" y1="25" x2="138" y2="61" stroke="#f3f7fc" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+          <h3>거울</h3>
+          <p>빛을 90도로 꺾어 원하는 곳으로 보냅니다. 배치·회전·이동·회수가 모두 가능해요.</p>
+        </div>
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="빨강과 초록 빛이 합광기에서 만나 노랑으로 나가는 그림">
+            <line x1="10" y1="22" x2="104" y2="22" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="104" y1="22" x2="104" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="10" y1="64" x2="104" y2="64" stroke="#5ce3a1" stroke-width="5" stroke-linecap="round"/>
+            <line x1="104" y1="64" x2="104" y2="43" stroke="#5ce3a1" stroke-width="5" stroke-linecap="round"/>
+            <rect x="92" y="31" width="26" height="24" rx="6" fill="#192d46" stroke="#62dcf2" stroke-width="3"/>
+            <line x1="118" y1="43" x2="230" y2="43" stroke="#ffd66b" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <h3>합광기</h3>
+          <p>여러 갈래의 빛을 하나로 모아 화살표 방향으로 내보냅니다.</p>
+        </div>
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="흰 빛이 빨강 필터를 지나 빨강만 남는 그림">
+            <line x1="10" y1="43" x2="104" y2="43" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <rect x="104" y="14" width="22" height="58" rx="6" fill="rgba(255,101,123,0.35)" stroke="#ff657b" stroke-width="3"/>
+            <line x1="126" y1="43" x2="230" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <h3>필터</h3>
+          <p>정해진 색 성분만 통과시켜, 넘치는 색을 걸러 냅니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 챕터 -->
+    <section class="band" id="chapters">
+      <p class="eyebrow">Chapters</p>
+      <h2>5개 챕터, 100개 레벨</h2>
+      <p class="sub">쉬운 거울 놓기에서 시작해 점점 깊은 색의 조합으로 나아갑니다.</p>
+      <div class="chapters">
+        <div class="chapter" style="--c:#ff657b"><span class="no">CHAPTER 1</span><h3>빛의 길</h3><p>거울 배치와 반사</p><p class="lv">레벨 1 ~ 20</p></div>
+        <div class="chapter" style="--c:#ffd66b"><span class="no">CHAPTER 2</span><h3>두 색의 만남</h3><p>혼합과 교차</p><p class="lv">레벨 21 ~ 40</p></div>
+        <div class="chapter" style="--c:#5ce3a1"><span class="no">CHAPTER 3</span><h3>정확한 색</h3><p>필요한 빛과 초과 성분</p><p class="lv">레벨 41 ~ 60</p></div>
+        <div class="chapter" style="--c:#62dcf2"><span class="no">CHAPTER 4</span><h3>하나의 빛으로</h3><p>함께 모으는 경로</p><p class="lv">레벨 61 ~ 80</p></div>
+        <div class="chapter" style="--c:#6296ff"><span class="no">CHAPTER 5</span><h3>색을 골라내기</h3><p>필터와 종합 퍼즐</p><p class="lv">레벨 81 ~ 100</p></div>
+      </div>
+    </section>
+
+    <!-- 특징 -->
+    <section class="band">
+      <p class="eyebrow">Features</p>
+      <h2>편하게 즐기도록 만들었어요</h2>
+      <ul class="chips">
+        <li>⏱ 시간제한 · 생명 없음</li>
+        <li>↩ 무제한 되돌리기</li>
+        <li>💡 레벨마다 첫 힌트 무료</li>
+        <li>✈ 오프라인 플레이</li>
+        <li>💾 진행 자동 저장</li>
+        <li>🔄 세로 · 가로 화면</li>
+        <li>🔠 큰 글자 · 빛 표현 줄이기</li>
+        <li>🌐 한국어 · English</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="finale">
+    <div class="wrap">
+      <h2>곧 만나요, 빛의조합</h2>
+      <p>Android 출시를 준비하고 있습니다.</p>
+      <p>문의 · 의견: <a href="mailto:jbiglion22@gmail.com">jbiglion22@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 J.Biglion</span>
+    <span>빛의조합 (Light Mix)</span>
+  </div>
+</footer>
+<script src="js/demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Light Mix – The RGB Light-Mixing Puzzle</title>
+<meta name="description" content="Build light paths with mirrors, mix red, green and blue, and match exact colors. An RGB light puzzle with 100 levels, no timers, and offline play.">
+<link rel="icon" href="icons/app-icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="ko" href="index-ko.html">
+<link rel="alternate" hreflang="en" href="index.html">
+<link rel="alternate" hreflang="x-default" href="index.html">
+<link rel="stylesheet" href="css/style.css">
+<script>
+// Visitors whose browser language is Korean are sent to the Korean page on their first visit.
+// Clicking a language link turns the redirect off.
+(function () {
+  try {
+    if (sessionStorage.getItem('lm-lang-chosen')) return;
+    var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    if (lang.indexOf('ko') === 0) location.replace('index-ko.html');
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="icons/app-icon.svg" alt="">Light Mix</a>
+    <nav class="links" aria-label="Menu">
+      <a href="#play">Try it</a>
+      <a href="#chapters">Chapters</a>
+      <a href="index-ko.html" hreflang="ko" lang="ko" onclick="try{sessionStorage.setItem('lm-lang-chosen','1')}catch(e){}">한국어</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="stage" id="play">
+    <div class="wrap">
+      <div>
+        <div class="badge-row">
+          <span class="badge hot">Android · Coming soon</span>
+          <span class="badge">100 levels</span>
+          <span class="badge">No timers</span>
+        </div>
+        <h1>Mix the <span class="glow-r">light.</span> Bend the <span class="glow-g">beam.</span><br>Nail the <span class="glow-b">color.</span></h1>
+        <p class="lead"><b>Light Mix</b> is a puzzle about steering red, green and blue beams with mirrors so every receiver lights up in exactly the right color. Try the demo puzzle right now.</p>
+        <a class="btn" href="#how">How does it play?</a>
+        <a class="btn ghost" href="#chapters">See the 100 levels</a>
+      </div>
+
+      <div class="demo" id="demo">
+        <div class="demo-top">
+          <strong>Try it</strong>
+          <span class="target-chip">Target <i></i> Yellow</span>
+        </div>
+        <svg id="demo-board" xmlns="http://www.w3.org/2000/svg" aria-hidden="false"></svg>
+        <p class="demo-status" id="demo-status" role="status" aria-live="polite"></p>
+        <div class="demo-actions">
+          <button type="button" id="demo-hint">Hint</button>
+          <button type="button" id="demo-reset">Reset</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- Color mixing -->
+    <section class="band">
+      <p class="eyebrow">Mix</p>
+      <h2>Light gets brighter as it mixes</h2>
+      <p class="sub">Unlike paint, light adds up. Three beams are enough to make seven colors.</p>
+      <div class="mixgrid">
+        <div class="venn" role="img" aria-label="Overlapping red, green and blue circles that make yellow, cyan, magenta and white">
+          <span class="r"></span><span class="g"></span><span class="b"></span>
+        </div>
+        <div>
+          <div class="recipes">
+            <div class="recipe"><i style="background:#ffd66b"></i><div>Red + Green<small>Yellow</small></div></div>
+            <div class="recipe"><i style="background:#62dcf2"></i><div>Green + Blue<small>Cyan</small></div></div>
+            <div class="recipe"><i style="background:#e58cff"></i><div>Red + Blue<small>Magenta</small></div></div>
+            <div class="recipe"><i style="background:#fff"></i><div>Red + Green + Blue<small>White</small></div></div>
+          </div>
+          <p class="note-card"><strong>Exact or nothing.</strong> If the target is yellow and white arrives, the receiver stays off. Gather the light you need and steer the extra away.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How -->
+    <section class="band" id="how">
+      <p class="eyebrow">How to play</p>
+      <h2>Three steps to get it</h2>
+      <p class="sub">The rules are simple. The puzzles get deeper with every chapter.</p>
+      <div class="steps">
+        <div class="step"><h3>Place mirrors</h3><p>Drag a mirror from the tray, or select it and tap an empty cell.</p></div>
+        <div class="step"><h3>Turn them</h3><p>Tap a mirror to flip between / and \ and watch the light path change instantly.</p></div>
+        <div class="step"><h3>Light the receivers</h3><p>When every receiver matches its target color exactly, you win. Mistakes are always undoable.</p></div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="band">
+      <p class="eyebrow">Tools</p>
+      <h2>New tools keep arriving</h2>
+      <p class="sub">Start with one mirror, and end up with combiners and filters. Every chapter brings a fresh idea.</p>
+      <div class="tools">
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="A red beam bending downward at a mirror">
+            <line x1="10" y1="43" x2="120" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="120" y1="43" x2="120" y2="82" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="102" y1="25" x2="138" y2="61" stroke="#f3f7fc" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+          <h3>Mirror</h3>
+          <p>Bends light by 90 degrees. You can place, rotate, move and take it back.</p>
+        </div>
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="Red and green beams meeting in a combiner and leaving as yellow">
+            <line x1="10" y1="22" x2="104" y2="22" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="104" y1="22" x2="104" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="10" y1="64" x2="104" y2="64" stroke="#5ce3a1" stroke-width="5" stroke-linecap="round"/>
+            <line x1="104" y1="64" x2="104" y2="43" stroke="#5ce3a1" stroke-width="5" stroke-linecap="round"/>
+            <rect x="92" y="31" width="26" height="24" rx="6" fill="#192d46" stroke="#62dcf2" stroke-width="3"/>
+            <line x1="118" y1="43" x2="230" y2="43" stroke="#ffd66b" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+          <h3>Combiner</h3>
+          <p>Gathers several beams into one and sends it out along its arrow.</p>
+        </div>
+        <div class="tool">
+          <svg viewBox="0 0 240 86" role="img" aria-label="White light passing a red filter and turning red">
+            <line x1="10" y1="43" x2="104" y2="43" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <rect x="104" y="14" width="22" height="58" rx="6" fill="rgba(255,101,123,0.35)" stroke="#ff657b" stroke-width="3"/>
+            <line x1="126" y1="43" x2="230" y2="43" stroke="#ff657b" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <h3>Filter</h3>
+          <p>Lets only one color component through, so you can strain out the excess.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapters -->
+    <section class="band" id="chapters">
+      <p class="eyebrow">Chapters</p>
+      <h2>5 chapters, 100 levels</h2>
+      <p class="sub">From easy mirror placement to richer and richer color combinations.</p>
+      <div class="chapters">
+        <div class="chapter" style="--c:#ff657b"><span class="no">CHAPTER 1</span><h3>Light paths</h3><p>Place mirrors and reflect light</p><p class="lv">Levels 1 – 20</p></div>
+        <div class="chapter" style="--c:#ffd66b"><span class="no">CHAPTER 2</span><h3>Two colors meet</h3><p>Mixing and crossing paths</p><p class="lv">Levels 21 – 40</p></div>
+        <div class="chapter" style="--c:#5ce3a1"><span class="no">CHAPTER 3</span><h3>Exact colors</h3><p>Needed colors and excess light</p><p class="lv">Levels 41 – 60</p></div>
+        <div class="chapter" style="--c:#62dcf2"><span class="no">CHAPTER 4</span><h3>One light together</h3><p>Bring paths together</p><p class="lv">Levels 61 – 80</p></div>
+        <div class="chapter" style="--c:#6296ff"><span class="no">CHAPTER 5</span><h3>Choose the colors</h3><p>Filters and combined puzzles</p><p class="lv">Levels 81 – 100</p></div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="band">
+      <p class="eyebrow">Features</p>
+      <h2>Made to be easy to enjoy</h2>
+      <ul class="chips">
+        <li>⏱ No timers, no lives</li>
+        <li>↩ Unlimited undo</li>
+        <li>💡 First hint of each level is free</li>
+        <li>✈ Play offline</li>
+        <li>💾 Auto-saved progress</li>
+        <li>🔄 Portrait and landscape</li>
+        <li>🔠 Large text · reduced light effects</li>
+        <li>🌐 English · 한국어</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="finale">
+    <div class="wrap">
+      <h2>See you soon in Light Mix</h2>
+      <p>The Android release is in preparation.</p>
+      <p>Feedback and questions: <a href="mailto:jbiglion22@gmail.com">jbiglion22@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 J.Biglion</span>
+    <span>Light Mix</span>
+  </div>
+</footer>
+<script src="js/demo.js"></script>
+</body>
+</html>
